@@ -207,7 +207,7 @@ export default {
 }
 
 .selesai {
-  color: green;
+  color: rgb(247, 33, 18);
 }
 
 .cancel-button {
