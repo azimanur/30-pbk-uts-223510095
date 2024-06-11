@@ -1,4 +1,3 @@
-<!-- Todos.vue -->
 <template>
   <div class="centered-content">
     <h2>Fitur Todos</h2>
@@ -47,9 +46,15 @@
 
 <script>
 export default {
+  props: {
+    initialActivities: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data() {
     return {
-      activities: [],
+      activities: [...this.initialActivities],
       newActivity: '',
       filter: 'all', // Default filter: show all activities
     };
