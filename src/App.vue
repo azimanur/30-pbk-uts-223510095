@@ -1,14 +1,12 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar color="primary" class="justify-between">
+      <q-toolbar color="primary">
         <q-toolbar-title>
           <q-btn flat @click="navigateTo('/todos')" label="Todos" />
           <q-btn flat @click="navigateTo('/posts')" label="Posts" />
           <q-btn flat @click="navigateTo('/albums')" label="Albums" />
         </q-toolbar-title>
-
-        <q-space />
         
         <q-btn flat dense icon="person" />
         <div class="q-ml-auto">
