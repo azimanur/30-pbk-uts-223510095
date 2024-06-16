@@ -1,57 +1,49 @@
-<!-- App.vue -->
 <template>
-  <div>
-    <header>
-      <nav>
-        <ul class="menu">
-          <li><button @click="showTodos">Todos</button></li>
-          <li><button @click="showPosts">Posts</button></li>
-        </ul>
-      </nav>
-    </header>
-    <Todos v-if="activeMenu === 'todos'" />
-    <Posts v-if="activeMenu === 'posts'" />
-    <Slot v-else />
-  </div>
+  <q-layout view="lHh Lpr lFf">
+    <q-header elevated>
+      <q-toolbar color="primary" class="justify-between">
+        <q-toolbar-title>
+          <q-btn flat @click="navigateTo('/todos')" label="Todos" />
+          <q-btn flat @click="navigateTo('/posts')" label="Posts" />
+          <q-btn flat @click="navigateTo('/albums')" label="Albums" />
+        </q-toolbar-title>
+
+        <q-space />
+        
+        <q-btn flat dense icon="person" />
+        <div class="q-ml-auto">
+          <q-toolbar-title>Nur Azima</q-toolbar-title>
+        </div>
+      </q-toolbar>
+    </q-header>
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
-import Todos from './components/Todos.vue';
-import Posts from './components/Posts.vue';
-import Slot from './components/Slot.vue';
+import { defineComponent } from 'vue';
+import { useRouter } from 'vue-router';
 
-export default {
-  components: {
-    Todos,
-    Posts,
-    Slot,
-  },
-  data() {
+export default defineComponent({
+  setup() {
+    const router = useRouter();
+
+    const navigateTo = (path) => {
+      router.push(path);
+    };
+
     return {
-      activeMenu: '',
+      navigateTo,
     };
   },
-  methods: {
-    showTodos() {
-      this.activeMenu = 'todos';
-    },
-    showPosts() {
-      this.activeMenu = 'posts';
-    },
-  },
-};
+});
 </script>
 
-<style>
-/* Tambahkan CSS sesuai kebutuhan Anda */
-.menu {
-  display: flex;
-  justify-content: center;
-  list-style: none;
-  padding: 0;
-}
-
-.menu li {
-  margin: 0 10px;
+<style scoped>
+.justify-between {
+  justify-content: space-between !important;
 }
 </style>
